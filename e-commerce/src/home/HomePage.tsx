@@ -1,6 +1,11 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 const HomePage: React.FC = () => {
+  useEffect(() => {
+    // Cette fonction sera exécutée lorsque le composant est monté
+    // Vous pouvez ajouter ici des actions à effectuer lors du montage du composant
+  }, []); // Le tableau vide indique que cette fonction doit être exécutée uniquement lors du montage initial du composant
+
   // Exemple de données pour les produits
   const products = [
     { id: 1, name: 'Produit 1', price: 10.99, category: 'Homme' },

@@ -1,23 +1,26 @@
 import React, { useState } from 'react';
 
 const SignIn: React.FC = () => {
-  // State pour les champs de connexion
+  // États pour stocker les valeurs des champs de formulaire
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
   // Fonction de soumission du formulaire
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
-    // Ajoutez ici la logique pour la soumission du formulaire
+    // Vous pouvez ajouter ici la logique de soumission du formulaire, par exemple, envoyer les données au serveur
     console.log('Email:', email);
     console.log('Password:', password);
+    // Réinitialisation des champs du formulaire après soumission
+    setEmail('');
+    setPassword('');
   };
 
   return (
     <div>
       <h2>Connexion</h2>
       <form onSubmit={handleSubmit}>
-        {/* Champ Email */}
+        {/* Champ email */}
         <div>
           <label htmlFor="email">Email:</label>
           <input
@@ -25,9 +28,10 @@ const SignIn: React.FC = () => {
             id="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
+            required
           />
         </div>
-        {/* Champ Mot de passe */}
+        {/* Champ mot de passe */}
         <div>
           <label htmlFor="password">Mot de passe:</label>
           <input
@@ -35,6 +39,7 @@ const SignIn: React.FC = () => {
             id="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
+            required
           />
         </div>
         {/* Bouton de soumission */}
