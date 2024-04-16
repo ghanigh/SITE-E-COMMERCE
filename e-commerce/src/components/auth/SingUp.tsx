@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import axios from 'axios';
 
 const SignUp: React.FC = () => {
   // Déclaration des états pour stocker les valeurs des champs de formulaire
@@ -33,24 +34,30 @@ const SignUp: React.FC = () => {
   };
 
   // Fonction pour gérer la soumission du formulaire
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Création d'un objet contenant les données du formulaire
-    const formData = {
-      username,
-      email,
-      password,
-      firstName,
-      lastName,
-    };
-    // Envoyer les données du formulaire au serveur ou traiter localement
-    console.log("Submitted data:", formData);
-    // Réinitialiser les champs du formulaire après la soumission
-    setUsername("");
-    setEmail("");
-    setPassword("");
-    setFirstName("");
-    setLastName("");
+    try {
+      // Création d'un objet contenant les données du formulaire
+      const formData = {
+        username,
+        email,
+        password,
+        firstName,
+        lastName,
+      };
+      // Envoi des données du formulaire au serveur avec Axios
+      const response = await axios.post('http://localhost:5173/signup', formData);
+
+      console.log('Server response:', response.data);
+      // Réinitialiser les champs du formulaire après la soumission
+      setUsername("");
+      setEmail("");
+      setPassword("");
+      setFirstName("");
+      setLastName("");
+    } catch (error) {
+      console.error('Error submitting data:', error);
+    }
   };
 
   return (
