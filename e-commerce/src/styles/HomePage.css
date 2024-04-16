@@ -1,0 +1,23 @@
+.product-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+  
+  .product {
+    width: 30%;
+    margin-bottom: 20px;
+    padding: 20px;
+    border: 1px solid #ccc;
+  }
+  
+  .product h3 {
+    margin-top: 0;
+  }
+  
+  .product p {
+    margin-bottom: 10px;
+  }
+  
+  /* Ajoutez d'autres styles selon vos besoins */
+  

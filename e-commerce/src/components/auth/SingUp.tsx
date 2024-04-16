@@ -43,7 +43,7 @@ const SignUp: React.FC = () => {
     <div>
       <h2>Inscription</h2>
       <form onSubmit={handleSubmit}>
-      <div>
+              <div>
           <label htmlFor="lastName">Nom de famille</label> {/* Nouveau champ : nom de famille */}
           <input
             type="text"
@@ -106,4 +106,3 @@ const SignUp: React.FC = () => {
 };
 
 export default SignUp;
-

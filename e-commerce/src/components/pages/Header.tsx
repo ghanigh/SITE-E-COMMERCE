@@ -7,7 +7,7 @@ interface HeaderProps {
 const Header: React.FC<HeaderProps> = ({ OrangeLogo }) => {
   return (
     <div>
-      <a href="https://github.com/ghanigh/SITE-E-COMMERCE" target="_blank" rel="noopener noreferrer">
+      <a href="http://localhost:5173" target="_blank" rel="noopener noreferrer">
         <img src={OrangeLogo} className="logo" alt="Vite logo" />
       </a>
      
