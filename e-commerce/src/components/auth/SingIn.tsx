@@ -1,48 +1,61 @@
 import React, { useState } from 'react';
 
-const SignIn: React.FC = () => {
-  // États pour stocker les valeurs des champs de formulaire
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+interface SignInFormData {
+  email: string;
+  password: string;
+}
 
-  // Fonction de soumission du formulaire
-  const handleSubmit = (event: React.FormEvent) => {
-    event.preventDefault();
-    // Vous pouvez ajouter ici la logique de soumission du formulaire, par exemple, envoyer les données au serveur
-    console.log('Email:', email);
-    console.log('Password:', password);
-    // Réinitialisation des champs du formulaire après soumission
-    setEmail('');
-    setPassword('');
+const SignIn: React.FC = () => {
+  const [formData, setFormData] = useState<SignInFormData>({
+    email: '',
+    password: '',
+  });
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
+  };
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    // Envoyer les données du formulaire au serveur ou traiter localement
+    console.log('Submitted data:', formData);
+    // Réinitialiser le formulaire après la soumission
+    setFormData({
+      email: '',
+      password: '',
+    });
   };
 
   return (
     <div>
       <h2>Connexion</h2>
       <form onSubmit={handleSubmit}>
-        {/* Champ email */}
         <div>
-          <label htmlFor="email">Email:</label>
+          <label htmlFor="email">Email</label>
           <input
             type="email"
             id="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            name="email"
+            value={formData.email}
+            onChange={handleChange}
             required
           />
         </div>
-        {/* Champ mot de passe */}
         <div>
-          <label htmlFor="password">Mot de passe:</label>
+          <label htmlFor="password">Mot de passe</label>
           <input
             type="password"
             id="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
+            name="password"
+            value={formData.password}
+            onChange={handleChange}
             required
           />
         </div>
-        {/* Bouton de soumission */}
         <button type="submit">Se connecter</button>
       </form>
     </div>

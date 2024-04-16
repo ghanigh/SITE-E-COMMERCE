@@ -4,6 +4,8 @@ interface SignUpFormData {
   username: string;
   email: string;
   password: string;
+  firstName: string; // Nouveau champ : prénom
+  lastName: string; // Nouveau champ : nom de famille
 }
 
 const SignUp: React.FC = () => {
@@ -11,6 +13,8 @@ const SignUp: React.FC = () => {
     username: '',
     email: '',
     password: '',
+    firstName: '', // Initialiser le nouveau champ : prénom
+    lastName: '', // Initialiser le nouveau champ : nom de famille
   });
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -30,6 +34,8 @@ const SignUp: React.FC = () => {
       username: '',
       email: '',
       password: '',
+      firstName: '', // Réinitialiser le champ : prénom
+      lastName: '', // Réinitialiser le champ : nom de famille
     });
   };
 
@@ -37,6 +43,28 @@ const SignUp: React.FC = () => {
     <div>
       <h2>Inscription</h2>
       <form onSubmit={handleSubmit}>
+      <div>
+          <label htmlFor="lastName">Nom de famille</label> {/* Nouveau champ : nom de famille */}
+          <input
+            type="text"
+            id="lastName"
+            name="lastName"
+            value={formData.lastName}
+            onChange={handleChange}
+            required
+          />
+        </div>
+      <div>
+          <label htmlFor="firstName">Prénom</label> {/* Nouveau champ : prénom */}
+          <input
+            type="text"
+            id="firstName"
+            name="firstName"
+            value={formData.firstName}
+            onChange={handleChange}
+            required
+          />
+        </div>
         <div>
           <label htmlFor="username">Nom d'utilisateur</label>
           <input
@@ -70,6 +98,7 @@ const SignUp: React.FC = () => {
             required
           />
         </div>
+        
         <button type="submit">S'inscrire</button>
       </form>
     </div>
@@ -77,3 +106,4 @@ const SignUp: React.FC = () => {
 };
 
 export default SignUp;
+
