@@ -1,16 +1,20 @@
-import React, { useState } from 'react';
+import { useState } from 'react'
 import Header from './components/pages/Header';
 import Counter from './components/pages/Counter';
 import Footer from './components/pages/Footer';
 import reactLogo from './assets/react.svg';
 import viteLogo from './assets/vite.svg';
+//Connexion / Inscription
 import SignIn from './components/auth/SingIn';
 import SignUp from './components/auth/SingUp';
+// Home
 import HomePage from './home/HomePage';
 import ProductDetailPage from './home/ProductDetailPage';
+// Carte
 import CartPage from './components/cart/CartPage';
-import { authService } from './services/authService'; // Utilisation de authService
-import { productService } from './services/productService'; // Utilisation de productService
+// Services
+import { authService } from './services/authService';
+import { productService } from './services/productService';
 
 import './App.css';
 
