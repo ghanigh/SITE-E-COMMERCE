@@ -9,10 +9,11 @@ interface User {
 
 // Schéma utilisateur avec Mongoose
 const UserSchema: Schema = new Schema<User>({
-  username: { type: String, required: true },
-  email: { type: String, required: true, unique: true },
-  password: { type: String, required: true },
+  // Définition des champs du schéma utilisateur avec leurs types et options
+  username: { type: String, required: true }, // Champ username de type String, requis
+  email: { type: String, required: true, unique: true }, // Champ email de type String, requis et unique
+  password: { type: String, required: true }, // Champ password de type String, requis
 });
 
-// Exporter le modèle utilisateur
+// Exporter le modèle utilisateur en utilisant l'interface User et Document de Mongoose
 export default mongoose.model<User & Document>('User', UserSchema);

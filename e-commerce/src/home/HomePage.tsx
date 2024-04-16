@@ -1,10 +1,11 @@
 import React, { useEffect } from 'react';
 
 const HomePage: React.FC = () => {
+  // Effet useEffect pour effectuer des actions lors du montage initial du composant
   useEffect(() => {
     // Cette fonction sera exécutée lorsque le composant est monté
     // Vous pouvez ajouter ici des actions à effectuer lors du montage du composant
-  }, []); // Le tableau vide indique que cette fonction doit être exécutée uniquement lors du montage initial du composant
+  }, []);
 
   // Exemple de données pour les produits
   const products = [
@@ -17,9 +18,12 @@ const HomePage: React.FC = () => {
   return (
     <div>
       <h2>Produits</h2>
+      {/* Affichage de la liste des produits */}
       <div className="product-list">
+        {/* Mapping sur les produits pour les afficher */}
         {products.map(product => (
           <div key={product.id} className="product">
+            {/* Affichage des détails du produit */}
             <h3>{product.name}</h3>
             <p>Prix: {product.price} €</p>
             <p>Catégorie: {product.category}</p>
