@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-
+import '../styles/HomePage.css'
 const HomePage: React.FC = () => {
   // Effet useEffect pour effectuer des actions lors du montage initial du composant
   useEffect(() => {

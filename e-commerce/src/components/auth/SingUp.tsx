@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import '../../styles/SingUp.css'
 
 const SignUp: React.FC = () => {
   // Déclaration des états pour stocker les valeurs des champs de formulaire

@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import '../../styles/SingIn.css'
 
 // Définition de l'interface pour les données du formulaire de connexion
 interface SignInFormData {
