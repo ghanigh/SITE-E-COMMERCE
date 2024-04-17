@@ -5,8 +5,9 @@ const SignUp: React.FC = () => {
   // Déclaration des états pour stocker les valeurs des champs de formulaire
   const [prenom, setPrenom] = useState("");
   const [email, setEmail] = useState("");
+  const [picture, setPicture] = useState("");
   const [password, setPassword] = useState("");
-  const [role, setRole] = useState("");
+  const [role, setRole] = useState('user');
 
   // Fonction pour gérer les changements dans les champs de formulaire
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
@@ -21,8 +22,8 @@ const SignUp: React.FC = () => {
       case "password":
         setPassword(value);
         break;
-      case "role":
-        setRole(value);
+      case "picture":
+        setPicture(value);
         break;
       default:
         break;
@@ -35,20 +36,23 @@ const SignUp: React.FC = () => {
     try {
       // Création d'un objet contenant les données du formulaire
       const formData = {
-        prenom,
+        name: prenom,
         email,
+        picture,
         password,
-        role,
+        role: role
       };
+      console.log(formData);
+      
       // Envoi des données du formulaire au serveur avec Axios
       const response = await axios.post('http://localhost:8090/api/user/signup', formData);
+console.log(response);
 
-      console.log('Server response:', response.data);
+      // console.log('Server response:', response.data);
       // Réinitialiser les champs du formulaire après la soumission
       setPrenom("");
       setEmail("");
       setPassword("");
-      setRole("");
     } catch (error) {
       console.error('Error submitting data:', error);
     }
@@ -84,6 +88,19 @@ const SignUp: React.FC = () => {
             required
           />
         </div>
+          {/* Champ pour picture*/}
+          <div>
+          <label htmlFor="picture">Picture</label>
+          <input
+            type="text"
+            id="picture"
+            name="picture"
+            value={picture}
+            onChange={handleChange}
+            required
+          />
+        </div>
+        
         {/* Champ pour le mot de passe */}
         <div>
           <label htmlFor="password">Mot de passe</label>
@@ -96,23 +113,8 @@ const SignUp: React.FC = () => {
             required
           />
         </div>
-        {/* Champ pour le rôle */}
-        <div>
-          <label htmlFor="role">Rôle</label>
-          <select
-            id="role"
-            name="role"
-            value={role}
-            onChange={handleChange}
-            required
-          >
-            <option value="">Sélectionnez un rôle</option>
-            <option value="user">Utilisateur</option>
-            <option value="admin">Administrateur</option>
-          </select>
-        </div>
         {/* Bouton de soumission du formulaire */}
-        <button type="submit">S'inscrire</button>
+        <button>S'inscrire</button>
       </form>
     </div>
   );
