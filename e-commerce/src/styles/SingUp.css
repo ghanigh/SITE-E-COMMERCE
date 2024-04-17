@@ -37,6 +37,16 @@ input[type="password"] {
   box-sizing: border-box;
 }
 
+select {
+  /* Ajouté pour le champ role */
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
 button {
   width: 100%;
   padding: 12px;
