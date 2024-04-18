@@ -18,7 +18,7 @@ function App() {
         <Route path="/user/signin" element={<SignIn />} />
 
         {/* Nouvelle route pour la page de détail du produit */}
-        <Route path="/product/:id" element={<ProductDetailPage />} />
+      {/*   <Route path="/product/:id" element={<ProductDetailPage />} /> */}
         
         {/* Nouvelle route pour la page du panier */}
         <Route path="/cart" element={<CartPage />} />
