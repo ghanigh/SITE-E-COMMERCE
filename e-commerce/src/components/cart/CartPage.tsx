@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 interface Product {
   id: number;
@@ -33,6 +34,12 @@ const CartPage: React.FC = () => {
     return cart.reduce((total, product) => total + product.price * product.quantity, 0);
   };
 
+  // Fonction pour valider le panier
+  const validateCart = () => {
+    // Ajoutez ici la logique pour valider le panier, par exemple, envoyer les données au backend
+    console.log('Panier validé !');
+  };
+
   return (
     <div>
       <h2>Panier</h2>
@@ -51,6 +58,10 @@ const CartPage: React.FC = () => {
       <div className="cart-total">
         <h3>Total du panier: {calculateTotal()} €</h3>
       </div>
+      {/* Bouton "Valider le Panier" */}
+      <button onClick={validateCart}>Valider le Panier</button>
+      {/* Bouton "Retour aux Produits" */}
+      <Link to="/">Retour aux Produits</Link>
     </div>
   );
 };

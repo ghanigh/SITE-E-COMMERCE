@@ -4,6 +4,7 @@ import SignUp from './components/auth/SingUp';
 import SignIn from './components/auth/SingIn';
 import HomePage from './home/HomePage';
 import ProductDetailPage from './home/ProductDetailPage';
+import CartPage from './components/cart/CartPage';
 
 function App() {
   return (
@@ -19,6 +20,8 @@ function App() {
         {/* Nouvelle route pour la page de détail du produit */}
         <Route path="/product/:id" element={<ProductDetailPage />} />
         
+        {/* Nouvelle route pour la page du panier */}
+        <Route path="/cart" element={<CartPage />} />
       </Routes>
     </Router>
   );

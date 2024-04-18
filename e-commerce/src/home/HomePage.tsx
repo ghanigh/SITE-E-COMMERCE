@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import '../styles/HomePage.css';
+import { useCart } from '../components/cart/CartContext';
 
 interface Product {
   id: number;
@@ -12,21 +13,22 @@ interface Product {
 }
 
 const HomePage: React.FC = () => {
-  const [products, setProducts] = useState<Product[]>([
-    { id: 1, name: 'Tshirt', price: 10.99, category: 'Unisexe', quantity: 0, image: '/assets/tshirt.jpg' },
-    { id: 2, name: 'Chaussure', price: 19.99, category: 'Femme', quantity: 0, image: '/assets/chaussure_femme.jpg' },
-    { id: 3, name: 'Chaussure', price: 14.99, category: 'Homme', quantity: 0, image: '/assets/chaussure_homme.jpg' },
-  ]);
-  const [filteredProducts, setFilteredProducts] = useState<Product[]>(products); // State pour stocker les produits filtrés
-  const [cart, setCart] = useState([]);
+  const [products, setProducts] = useState<Product[]>([]);
+  const [filteredProducts, setFilteredProducts] = useState<Product[]>([]);
+  const [cart, setCart] = useState<Product[]>([]);
 
   useEffect(() => {
-    // Effet pour mettre à jour les produits filtrés lorsque les produits changent
-    setFilteredProducts(products);
-  }, [products]);
+    // Mock data for products
+    const initialProducts: Product[] = [
+      { id: 1, name: 'Tshirt', price: 10.99, category: 'Unisexe', quantity: 0, image: '/assets/tshirt.jpg' },
+      { id: 2, name: 'Chaussure', price: 19.99, category: 'Femme', quantity: 0, image: '/assets/chaussure_femme.jpg' },
+      { id: 3, name: 'Chaussure', price: 14.99, category: 'Homme', quantity: 0, image: '/assets/chaussure_homme.jpg' },
+    ];
+    setProducts(initialProducts);
+    setFilteredProducts(initialProducts);
+  }, []);
 
   const addToCart = (product: Product) => {
-    // Fonction pour ajouter un produit au panier
     const updatedCart = [...cart];
     const itemInCart = updatedCart.find((item) => item.id === product.id);
     if (itemInCart) {
@@ -38,9 +40,8 @@ const HomePage: React.FC = () => {
   };
 
   const filterProducts = (category: string) => {
-    // Fonction pour filtrer les produits par catégorie
     if (category === 'Tous') {
-      setFilteredProducts(products); // Afficher tous les produits si la catégorie est 'Tous'
+      setFilteredProducts(products);
     } else {
       const filtered = products.filter((product) => product.category === category);
       setFilteredProducts(filtered);
@@ -48,10 +49,9 @@ const HomePage: React.FC = () => {
   };
 
   return (
-    <div>
-      <h2>Produits</h2>
+    <div className="home-page">
+      <h2 className="section-title">Produits</h2>
       <div className="filters">
-        {/* Boutons de filtrage */}
         <button onClick={() => filterProducts('Tous')}>Tous</button>
         <button onClick={() => filterProducts('Homme')}>Homme</button>
         <button onClick={() => filterProducts('Femme')}>Femme</button>
@@ -71,7 +71,7 @@ const HomePage: React.FC = () => {
         ))}
       </div>
       <div className="cart">
-        <h2>Panier</h2>
+        <h2 className="section-title">Contenu du panier</h2>
         <ul>
           {cart.map((item) => (
             <li key={item.id}>
@@ -79,6 +79,9 @@ const HomePage: React.FC = () => {
             </li>
           ))}
         </ul>
+        <Link to="/cart" className="cart-link">
+          <button>Voir le Panier</button>
+        </Link>
       </div>
     </div>
   );
