@@ -8,12 +8,25 @@ interface Product {
 }
 
 const CartPage: React.FC = () => {
-  // Exemple de données pour le panier
   const [cart, setCart] = useState<Product[]>([
-    { id: 1, name: 'Produit 1', price: 10.99, quantity: 1 },
-    { id: 2, name: 'Produit 2', price: 19.99, quantity: 2 },
-    { id: 3, name: 'Produit 3', price: 14.99, quantity: 1 },
+    { id: 1, name: 'Tshirt', price: 10.99, quantity: 1 },
+    { id: 2, name: 'Chaussure', price: 19.99, quantity: 2 },
+    { id: 3, name: 'Chaussure', price: 14.99, quantity: 1 },
   ]);
+
+  // Fonction pour ajouter un produit au panier
+  const addToCart = (productId: number) => {
+    const updatedCart = cart.map(product =>
+      product.id === productId ? { ...product, quantity: product.quantity + 1 } : product
+    );
+    setCart(updatedCart);
+  };
+
+  // Fonction pour supprimer un produit du panier
+  const removeFromCart = (productId: number) => {
+    const updatedCart = cart.filter(product => product.id !== productId);
+    setCart(updatedCart);
+  };
 
   // Fonction pour calculer le total du panier
   const calculateTotal = (): number => {
@@ -30,6 +43,8 @@ const CartPage: React.FC = () => {
             <p>Prix unitaire: {product.price} €</p>
             <p>Quantité: {product.quantity}</p>
             <p>Total: {product.price * product.quantity} €</p>
+            <button onClick={() => addToCart(product.id)}>Ajouter au panier</button>
+            <button onClick={() => removeFromCart(product.id)}>Supprimer du panier</button>
           </div>
         ))}
       </div>

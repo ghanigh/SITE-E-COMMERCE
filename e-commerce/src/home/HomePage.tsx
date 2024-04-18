@@ -1,15 +1,22 @@
 import React, { useState, useEffect } from 'react';
 import '../styles/HomePage.css';
-
+interface Product {
+  id: number;
+  name: string;
+  price: number;
+  category: string;
+  quantity: number;
+  image: string;
+}
 
 const HomePage: React.FC = () => {
   // Déclaration de l'état pour stocker les produits et le panier
-  const [products, setProducts] = useState([
-    { id: 1, name: 'Tshirt', price: 10.99, category: 'Unisexe', quantity: 0 },
-    { id: 2, name: 'Chaussure', price: 19.99, category: 'Femme', quantity: 0 },
-    { id: 3, name: 'Chaussure', price: 14.99, category: 'Homme', quantity: 0 },
-    // Ajout d'autres produits ici...
+  const [products, setProducts] = useState<Product[]>([
+    { id: 1, name: 'Tshirt', price: 10.99, category: 'Unisexe', quantity: 0, image: '/assets/tshirt.jpg' },
+    { id: 2, name: 'Chaussure', price: 19.99, category: 'Femme', quantity: 0, image: '/assets/chaussure_femme.jpg' },
+    { id: 3, name: 'Chaussure', price: 14.99, category: 'Homme', quantity: 0, image: '/assets/chaussure_homme.jpg' },
   ]);
+  
   const [cart, setCart] = useState([]);
 
   // Effet useEffect pour effectuer des actions lors du montage initial du composant
@@ -19,7 +26,7 @@ const HomePage: React.FC = () => {
   }, []);
 
 /*   // Fonction pour ajouter un produit au panier
-  const addToCart = (product) => {
+  const addToCart = (product: Product) => {
     const updatedCart = [...cart];
     const itemInCart = updatedCart.find((item) => item.id === product.id);
     if (itemInCart) {
@@ -38,10 +45,13 @@ const HomePage: React.FC = () => {
         {/* Mapping sur les produits pour les afficher */}
         {products.map((product) => (
           <div key={product.id} className="product">
+            {/* Affichage de l'image du produit */}
+            <img src={product.image} alt={product.name} />
             {/* Affichage des détails du produit */}
             <h3>{product.name}</h3>
             <p>Prix: {product.price} €</p>
             <p>Catégorie: {product.category}</p>
+            {/* Bouton pour ajouter au panier */}
             <button onClick={() => addToCart(product)}>Ajouter au panier</button>
           </div>
         ))}
